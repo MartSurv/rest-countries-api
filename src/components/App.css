@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: hsl(200, 15%, 8%);
+}
+
+.container {
+  padding: 0 10rem;
+  padding-top: 8rem;
+}

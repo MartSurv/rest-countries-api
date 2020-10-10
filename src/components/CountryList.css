@@ -1,0 +1,6 @@
+.country-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 260px));
+  gap: 6rem;
+  justify-content: space-between;
+}
