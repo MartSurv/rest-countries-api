@@ -1,18 +1,14 @@
 import './Search.css';
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import { connect } from 'react-redux';
 import CountryList from './CountryList';
-import { fetchCountries } from '../actions';
+import { selectRegion } from '../actions';
 import _ from 'lodash';
 
-function Search({ fetchCountries, data }) {
+function Search({ data, selectRegion }) {
   const [term, setTerm] = useState('');
   const [res, setRes] = useState([]);
-
-  // Run at initial render
-  useEffect(() => {
-    fetchCountries();
-  }, [fetchCountries]);
 
   useEffect(() => {
     if (data) {
@@ -26,6 +22,64 @@ function Search({ fetchCountries, data }) {
     }
   }, [data, term]);
 
+  const options = [
+    { value: 'All', label: 'All' },
+    { value: 'Africa', label: 'Africa' },
+    { value: 'Americas', label: 'America' },
+    { value: 'Asia', label: 'Asia' },
+    { value: 'Europe', label: 'Europe' },
+    { value: 'Oceania', label: 'Oceania' },
+  ];
+
+  const customStyles = {
+    option: (styles, state) => ({
+      ...styles,
+      color: state.isSelected ? 'hsl(0, 0%, 100%)' : 'hsl(200, 15%, 8%)',
+    }),
+    control: (styles) => ({
+      ...styles,
+      border: 'none',
+      borderRadius: 10,
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+      padding: 8,
+      paddingTop: 10,
+      paddingBottom: 10,
+    }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      color: 'hsl(200, 15%, 8%)',
+    }),
+    indicatorSeparator: (styles) => ({
+      ...styles,
+      display: 'none',
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      fontSize: 14,
+      fontWeight: 600,
+      color: 'hsl(200, 15%, 8%)',
+    }),
+
+    menu: (styles) => ({
+      ...styles,
+      fontSize: 14,
+      fontWeight: 600,
+      color: 'hsl(200, 15%, 8%)',
+    }),
+    singleValue: (styles) => ({
+      ...styles,
+      fontSize: 14,
+      fontWeight: 600,
+      color: 'hsl(200, 15%, 8%)',
+    }),
+    input: (styles) => ({
+      ...styles,
+      fontSize: 14,
+      fontWeight: 600,
+      color: 'hsl(200, 15%, 8%)',
+    }),
+  };
+
   return (
     <div>
       <div className="search">
@@ -36,7 +90,13 @@ function Search({ fetchCountries, data }) {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />
-        <p>Filter</p>
+        <Select
+          className="search__select-menu"
+          styles={customStyles}
+          options={options}
+          placeholder="Filter by Region"
+          onChange={(e) => selectRegion(e.value)}
+        />
       </div>
       <CountryList data={term === '' ? data : res} />
     </div>
@@ -47,4 +107,4 @@ const mapStateToProps = (state) => {
   return { data: state.allCountries };
 };
 
-export default connect(mapStateToProps, { fetchCountries })(Search);
+export default connect(mapStateToProps, { selectRegion })(Search);

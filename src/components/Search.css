@@ -13,3 +13,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
+
+.search__select-menu {
+  width: 200px;
+}

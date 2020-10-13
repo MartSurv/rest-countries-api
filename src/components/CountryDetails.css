@@ -32,12 +32,11 @@
   gap: 40px 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 600px));
-  justify-content: start;
+  /* justify-content: end; */
   animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .country__image-box {
-  width: 550px;
   height: 380px;
 }
 
@@ -78,8 +77,28 @@
 
 .country__borders {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-top: 3rem;
+}
+
+.country__borders h2 {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.country__border {
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 98%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 2rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+a:first-of-type .country__border {
+  margin-left: 1rem;
 }
 
 .btn-box {
@@ -87,10 +106,12 @@
 }
 
 .btn {
+  font-size: 1.4rem;
+  font-weight: 600;
   background-color: hsl(0, 0%, 98%);
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   padding: 1rem 5rem;
   cursor: pointer;
 }

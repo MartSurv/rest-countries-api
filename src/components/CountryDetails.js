@@ -1,82 +1,105 @@
 import './CountryDetails.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchCountry } from '../actions';
 
-function CountryDetails(props) {
+function CountryDetails({ country, allCountries, match, fetchCountry }) {
+  useEffect(() => {
+    fetchCountry(match.params.country);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match.params.country]);
+
   const renderLanguages = () => {
-    return props.country.languages.map((language) => {
+    return country.languages.map((language) => {
       return <span>{`${language.name} `}</span>;
     });
   };
 
   const renderCurrencies = () => {
-    return props.country.currencies.map((currency) => {
+    return country.currencies.map((currency) => {
       return <span>{`${currency.name} `}</span>;
     });
   };
 
   const renderPopulation = () => {
-    return props.country.population.toLocaleString();
+    return country.population.toLocaleString();
   };
 
-  return (
-    <div>
-      <Link to="/">
+  const renderBorderCountries = () => {
+    const borderCountryNames = [];
+
+    allCountries.forEach((ctr) => {
+      country.borders.forEach((border) => {
+        if (ctr.alpha3Code === border) {
+          borderCountryNames.push(ctr.name);
+        }
+      });
+    });
+    return borderCountryNames;
+  };
+
+  if (!country) {
+    return <div>Loading</div>;
+  } else {
+    return (
+      <div>
         <div className="btn-box">
-          <button className="btn">Back</button>
+          <Link to="/" className="btn">
+            Back
+          </Link>
         </div>
-      </Link>
-      <div className="country">
-        <div className="country__image-box">
-          <img
-            className="country__image"
-            src={`${props.country.flag}`}
-            alt=""
-          />
-        </div>
-        <div className="country__description">
-          <div className="country__title">
-            <h1>{props.country.name}</h1>
+        <div className="country">
+          <div className="country__image-box">
+            <img className="country__image" src={`${country.flag}`} alt="" />
           </div>
-          <div className="country__details">
-            <p>
-              Native Name: <span>{props.country.nativeName}</span>
-            </p>
-            <p>
-              Population: <span>{renderPopulation()}</span>
-            </p>
-            <p>
-              Region: <span>{props.country.region}</span>
-            </p>
-            <p>
-              Sub Region: <span>{props.country.subregion}</span>
-            </p>
-            <p>
-              Capital: <span>{props.country.capital}</span>
-            </p>
-            <p>
-              Top Level Domain: <span>{props.country.topLevelDomain[0]}</span>
-            </p>
-            <p>
-              Currencies: <span>{renderCurrencies()}</span>
-            </p>
-            <p>Languages: {renderLanguages()}</p>
-          </div>
-          <div className="country__borders">
-            <h2>Border Countries:</h2>
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
+          <div className="country__description">
+            <div className="country__title">
+              <h1>{country.name}</h1>
+            </div>
+            <div className="country__details">
+              <p>
+                Native Name: <span>{country.nativeName}</span>
+              </p>
+              <p>
+                Population: <span>{renderPopulation()}</span>
+              </p>
+              <p>
+                Region: <span>{country.region}</span>
+              </p>
+              <p>
+                Sub Region: <span>{country.subregion}</span>
+              </p>
+              <p>
+                Capital: <span>{country.capital}</span>
+              </p>
+              <p>
+                Top Level Domain: <span>{country.topLevelDomain[0]}</span>
+              </p>
+              <p>
+                Currencies: <span>{renderCurrencies()}</span>
+              </p>
+              <p>Languages: {renderLanguages()}</p>
+            </div>
+            <div className="country__borders">
+              <h2>Border Countries:</h2>
+              {renderBorderCountries().map((borderCountry) => {
+                return (
+                  <Link to={`/${borderCountry}`}>
+                    <div className="country__border">{borderCountry}</div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-  return { country: state.selectedCountry };
+  return { country: state.selectedCountry, allCountries: state.allCountries };
 };
 
-export default connect(mapStateToProps)(CountryDetails);
+export default connect(mapStateToProps, { fetchCountry })(CountryDetails);
