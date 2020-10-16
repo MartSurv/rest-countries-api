@@ -26,3 +26,7 @@ export const selectCountry = (country) => {
 export const selectRegion = (region) => {
   return { type: 'SWITCH_REGION', payload: region };
 };
+
+export const changeTheme = (theme) => {
+  return { type: 'CHANGE_THEME', payload: theme };
+};

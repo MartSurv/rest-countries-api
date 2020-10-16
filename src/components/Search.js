@@ -6,7 +6,7 @@ import CountryList from './CountryList';
 import { selectRegion } from '../actions';
 import _ from 'lodash';
 
-function Search({ data, selectRegion }) {
+function Search({ data, selectRegion, selectedTheme }) {
   const [term, setTerm] = useState('');
   const [res, setRes] = useState([]);
 
@@ -32,10 +32,6 @@ function Search({ data, selectRegion }) {
   ];
 
   const customStyles = {
-    option: (styles, state) => ({
-      ...styles,
-      color: state.isSelected ? 'hsl(0, 0%, 100%)' : 'hsl(200, 15%, 8%)',
-    }),
     control: (styles) => ({
       ...styles,
       border: 'none',
@@ -44,39 +40,55 @@ function Search({ data, selectRegion }) {
       padding: 8,
       paddingTop: 10,
       paddingBottom: 10,
+      backgroundColor:
+        selectedTheme === 'light' ? 'hsl(0, 0%, 98%)' : 'hsl(207, 26%, 17%)',
     }),
     dropdownIndicator: (styles) => ({
       ...styles,
-      color: 'hsl(200, 15%, 8%)',
+      color:
+        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
     }),
     indicatorSeparator: (styles) => ({
       ...styles,
       display: 'none',
     }),
-    placeholder: (styles) => ({
+    input: (styles) => ({
       ...styles,
       fontSize: 14,
       fontWeight: 600,
-      color: 'hsl(200, 15%, 8%)',
+      color:
+        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
     }),
-
     menu: (styles) => ({
       ...styles,
       fontSize: 14,
       fontWeight: 600,
-      color: 'hsl(200, 15%, 8%)',
+      color:
+        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
+      backgroundColor:
+        selectedTheme === 'light' ? 'hsl(0, 0%, 98%)' : 'hsl(207, 26%, 17%)',
+    }),
+    option: (styles, { isSelected, isFocused }) => ({
+      ...styles,
+      color: isSelected
+        ? 'hsl(0, 0%, 100%)'
+        : selectedTheme === 'light'
+        ? 'hsl(200, 15%, 8%)'
+        : 'hsl(0, 0%, 100%)',
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      fontSize: 14,
+      fontWeight: 600,
+      color:
+        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
     }),
     singleValue: (styles) => ({
       ...styles,
       fontSize: 14,
       fontWeight: 600,
-      color: 'hsl(200, 15%, 8%)',
-    }),
-    input: (styles) => ({
-      ...styles,
-      fontSize: 14,
-      fontWeight: 600,
-      color: 'hsl(200, 15%, 8%)',
+      color:
+        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
     }),
   };
 
@@ -104,7 +116,7 @@ function Search({ data, selectRegion }) {
 }
 
 const mapStateToProps = (state) => {
-  return { data: state.allCountries };
+  return { data: state.allCountries, selectedTheme: state.selectedTheme };
 };
 
 export default connect(mapStateToProps, { selectRegion })(Search);

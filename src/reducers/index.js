@@ -29,8 +29,16 @@ const selectedRegionReducer = (state = 'All', action) => {
   return state;
 };
 
+const selectedThemeReducer = (state = 'light', action) => {
+  if (action.type === 'CHANGE_THEME') {
+    return action.payload;
+  }
+  return state;
+};
+
 export default combineReducers({
   allCountries: countriesReducer,
   selectedCountry: selectedCountryReducer,
   selectedRegion: selectedRegionReducer,
+  selectedTheme: selectedThemeReducer,
 });

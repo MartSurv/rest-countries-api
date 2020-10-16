@@ -14,6 +14,10 @@
   border-radius: 10px;
 }
 
+.search__search-bar::placeholder {
+  font-family: inherit;
+}
+
 .search__select-menu {
   width: 200px;
 }

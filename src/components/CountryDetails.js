@@ -46,6 +46,9 @@ function CountryDetails({ country, allCountries, match, fetchCountry }) {
       <div>
         <div className="btn-box">
           <Link to="/" className="btn">
+            <svg className="btn__icon">
+              <use xlinkHref="sprite.svg#icon-keyboard_backspace"></use>
+            </svg>
             Back
           </Link>
         </div>
