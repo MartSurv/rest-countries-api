@@ -4,14 +4,6 @@ import CountryCard from './CountryCard';
 import { connect } from 'react-redux';
 
 function CountryList({ data, selectedRegion }) {
-  const changeAlignment = () => {
-    if (filteredData().length < 4) {
-      return { justifyContent: 'start' };
-    } else {
-      return { justifyContent: 'space-between' };
-    }
-  };
-
   const filteredData = () => {
     if (selectedRegion === 'All') {
       return data;
@@ -28,21 +20,28 @@ function CountryList({ data, selectedRegion }) {
     }
   };
 
-  if (data) {
-    const countries = filteredData().map((country) => {
-      return <CountryCard key={country.alpha2Code} country={country} />;
-    });
-    return (
-      <div className="country-list" style={changeAlignment()}>
-        {countries}
-      </div>
-    );
-  }
-  return <div className="country-list"></div>;
+  const countries = filteredData().map((country) => {
+    return <CountryCard key={country.alpha2Code} country={country} />;
+  });
+
+  const changeAlignment = () => {
+    if (filteredData().length < 4) {
+      return { justifyContent: 'start' };
+    } else {
+      return { justifyContent: 'space-between' };
+    }
+  };
+  return (
+    <div className="country-list" style={changeAlignment()}>
+      {countries}
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {
-  return { selectedRegion: state.selectedRegion };
+  return {
+    selectedRegion: state.selectedRegion,
+  };
 };
 
 export default connect(mapStateToProps)(CountryList);

@@ -4,6 +4,12 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
   }
+
+  @media only screen and (max-width: 375px) {
+    html {
+      font-size: 50%;
+    }
+  }
   
   *,
   *:before,
@@ -24,6 +30,12 @@ html {
   }
   .container {
     padding: 8rem 10rem;
+  }
+
+  @media only screen and (max-width: 375px) {
+    .container {
+      padding: 4rem 2rem;
+    }
   }
   .card__content {
     background-color: ${({ theme }) => theme.body};

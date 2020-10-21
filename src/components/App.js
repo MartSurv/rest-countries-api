@@ -20,7 +20,7 @@ function App({ fetchCountries, selectedTheme }) {
       <BrowserRouter>
         <GlobalStyles />
         <Header />
-        <div className="container">
+        <div className="container" onScroll={(e) => console.log(e)}>
           <Route path="/" exact component={Search} />
           <Route path="/:country" exact component={CountryDetails} />
         </div>

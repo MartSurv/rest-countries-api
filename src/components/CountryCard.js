@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectCountry } from '../actions';
+import LazyLoad from 'react-lazyload';
 
 function CountryCard({ country, selectCountry }) {
   const renderPopulation = () => {
@@ -12,12 +13,15 @@ function CountryCard({ country, selectCountry }) {
   return (
     <div>
       <Link to={`${country.name}`} className="card">
-        <div
-          className="fade-in-fwd card"
-          onClick={() => selectCountry(country)}
-        >
+        <div className="card" onClick={() => selectCountry(country)}>
           <div className="card__image-box">
-            <img className="card__image" src={`${country.flag}`} alt="" />
+            <LazyLoad>
+              <img
+                className="card__image"
+                src={`${country.flag}`}
+                alt={`${country.name} flag`}
+              />
+            </LazyLoad>
           </div>
           <div className="card__content">
             <div className="card__title">
