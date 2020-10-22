@@ -16,16 +16,16 @@ function App({ fetchCountries, selectedTheme }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <ThemeProvider theme={selectedTheme === 'light' ? lightTheme : darkTheme}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider theme={selectedTheme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Header />
-        <div className="container" onScroll={(e) => console.log(e)}>
+        <div className="container">
           <Route path="/" exact component={Search} />
           <Route path="/:country" exact component={CountryDetails} />
         </div>
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

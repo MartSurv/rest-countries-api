@@ -5,9 +5,9 @@ html {
     font-size: 62.5%;
   }
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 480px) {
     html {
-      font-size: 50%;
+      font-size: 55%;
     }
   }
   
@@ -22,7 +22,6 @@ html {
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     font-family: 'Nunito Sans', sans-serif;
-    transition: background-color 0.50s linear, color 0.50s linear;
   }
   a:link, a:visited {
     text-decoration: none;
@@ -32,15 +31,14 @@ html {
     padding: 8rem 10rem;
   }
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 1100px) {
     .container {
-      padding: 4rem 2rem;
+      padding: 4rem 3rem;
     }
   }
   .card__content {
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    transition: background-color 0.1s 0.5s linear, color 0.1s 0.5s linear;
   }
   .btn {
     background-color: ${({ theme }) => theme.body};
@@ -57,6 +55,9 @@ html {
   }
   .search__search-bar::placeholder {
     color: ${({ theme }) => theme.placeholder};
+  }
+  .search__icon {
+    fill: ${({ theme }) => theme.placeholder};
   }
   .icon {
     fill: ${({ theme }) => theme.text};

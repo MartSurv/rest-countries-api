@@ -13,7 +13,7 @@ function Search({ data, selectRegion, selectedTheme }) {
   useEffect(() => {
     if (data) {
       const resArr = data.filter((country) => {
-        if (_.lowerCase(country.name).includes(term)) {
+        if (_.lowerCase(country.name).includes(_.lowerCase(term))) {
           return country;
         }
         return null;
@@ -35,7 +35,7 @@ function Search({ data, selectRegion, selectedTheme }) {
     control: (styles) => ({
       ...styles,
       border: 'none',
-      borderRadius: 10,
+      borderRadius: 5,
       boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
       padding: 8,
       paddingTop: 10,
@@ -45,8 +45,7 @@ function Search({ data, selectRegion, selectedTheme }) {
     }),
     dropdownIndicator: (styles) => ({
       ...styles,
-      color:
-        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
+      color: selectedTheme === 'light' ? '#8e8e8e' : 'hsl(0, 0%, 100%)',
     }),
     indicatorSeparator: (styles) => ({
       ...styles,
@@ -80,8 +79,7 @@ function Search({ data, selectRegion, selectedTheme }) {
       ...styles,
       fontSize: 14,
       fontWeight: 600,
-      color:
-        selectedTheme === 'light' ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 100%)',
+      color: selectedTheme === 'light' ? '#8e8e8e' : 'hsl(0, 0%, 100%)',
     }),
     singleValue: (styles) => ({
       ...styles,
@@ -94,7 +92,7 @@ function Search({ data, selectRegion, selectedTheme }) {
 
   return (
     <React.Fragment>
-      <div className="search" onScroll={(e) => console.log(e)}>
+      <div className="search">
         <input
           className="search__search-bar"
           type="text"
@@ -102,6 +100,9 @@ function Search({ data, selectRegion, selectedTheme }) {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />
+        <svg className="search__icon">
+          <use xlinkHref="sprite.svg#icon-search"></use>
+        </svg>
         <Select
           className="search__select-menu"
           styles={customStyles}

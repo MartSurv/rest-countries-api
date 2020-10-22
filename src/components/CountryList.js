@@ -28,7 +28,7 @@ function CountryList({ data, selectedRegion }) {
     if (filteredData().length < 4) {
       return { justifyContent: 'start' };
     } else {
-      return { justifyContent: 'space-between' };
+      return;
     }
   };
   return (
