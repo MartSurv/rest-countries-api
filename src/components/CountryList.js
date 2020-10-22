@@ -26,7 +26,7 @@ function CountryList({ data, selectedRegion }) {
 
   const changeAlignment = () => {
     if (filteredData().length < 4) {
-      return { justifyContent: 'start' };
+      return { justifyContent: 'center' };
     } else {
       return;
     }
