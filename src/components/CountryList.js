@@ -1,7 +1,8 @@
 import './CountryList.css';
 import React from 'react';
-import CountryCard from './CountryCard';
 import { connect } from 'react-redux';
+
+import CountryCard from './CountryCard';
 
 function CountryList({ data, selectedRegion }) {
   const filteredData = () => {

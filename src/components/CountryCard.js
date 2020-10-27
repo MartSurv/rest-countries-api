@@ -1,5 +1,6 @@
 import './CountryCard.css';
 import React from 'react';
+import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectCountry } from '../actions';
@@ -10,7 +11,7 @@ function CountryCard({ country, selectCountry }) {
   };
 
   return (
-    <div>
+    <Fade center>
       <Link to={`${country.name}`} className="card">
         <div className="card" onClick={() => selectCountry(country)}>
           <div className="card__image-box">
@@ -38,7 +39,7 @@ function CountryCard({ country, selectCountry }) {
           </div>
         </div>
       </Link>
-    </div>
+    </Fade>
   );
 }
 
