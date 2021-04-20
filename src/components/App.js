@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Search from './Search';
-import CountryDetails from './CountryDetails';
-import Header from './Header';
-import { connect } from 'react-redux';
-import { fetchCountries } from '../actions';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './GlobalStyles';
-import { lightTheme, darkTheme } from './Theme';
+import { useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { fetchCountries } from "../actions";
+
+import Search from "./Search";
+import CountryDetails from "./CountryDetails";
+import Header from "./Header";
+import { GlobalStyles } from "./GlobalStyles";
+import { lightTheme, darkTheme } from "./Theme";
 
 function App({ fetchCountries, selectedTheme }) {
-  // Run at initial render
   useEffect(() => {
     fetchCountries();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchCountries]);
   return (
     <BrowserRouter>
-      <ThemeProvider theme={selectedTheme === 'light' ? lightTheme : darkTheme}>
+      <ThemeProvider theme={selectedTheme === "light" ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Header />
         <div className="container">

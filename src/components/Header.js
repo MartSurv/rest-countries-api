@@ -1,7 +1,8 @@
-import './Header.css';
-import React from 'react';
-import { connect } from 'react-redux';
-import { changeTheme } from '../actions';
+import { connect } from "react-redux";
+
+import { changeTheme } from "../actions";
+
+import "./Header.css";
 
 function Header({ changeTheme, selectedTheme }) {
   return (
@@ -9,19 +10,17 @@ function Header({ changeTheme, selectedTheme }) {
       <h1 className="heading-1">Where in the world?</h1>
       <div
         className="header__mode"
-        onClick={() =>
-          selectedTheme === 'light' ? changeTheme('dark') : changeTheme('light')
-        }
+        onClick={() => (selectedTheme === "light" ? changeTheme("dark") : changeTheme("light"))}
       >
         <svg className="icon">
           <use
             xlinkHref={`sprite.svg#icon-${
-              selectedTheme === 'light' ? 'brightness_4' : 'brightness_low'
+              selectedTheme === "light" ? "brightness_4" : "brightness_low"
             }`}
           ></use>
         </svg>
         <p className="header__mode-text">
-          {selectedTheme === 'light' ? 'Dark Mode' : 'Light Mode'}
+          {selectedTheme === "light" ? "Dark Mode" : "Light Mode"}
         </p>
       </div>
     </header>

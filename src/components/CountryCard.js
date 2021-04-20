@@ -1,9 +1,10 @@
-import './CountryCard.css';
-import React from 'react';
-import Fade from 'react-reveal/Fade';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { selectCountry } from '../actions';
+import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { selectCountry } from "../actions";
+
+import "./CountryCard.css";
 
 function CountryCard({ country, selectCountry }) {
   const renderPopulation = () => {
@@ -15,11 +16,7 @@ function CountryCard({ country, selectCountry }) {
       <Link to={`${country.name}`} className="card">
         <div className="card" onClick={() => selectCountry(country)}>
           <div className="card__image-box">
-            <img
-              className="card__image"
-              src={`${country.flag}`}
-              alt={`${country.name} flag`}
-            />
+            <img className="card__image" src={`${country.flag}`} alt={`${country.name} flag`} />
           </div>
           <div className="card__content">
             <div className="card__title">

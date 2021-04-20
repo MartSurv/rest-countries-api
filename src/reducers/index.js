@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 const countriesReducer = (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_COUNTRIES':
+    case "FETCH_COUNTRIES":
       return action.payload;
 
     default:
@@ -12,25 +12,25 @@ const countriesReducer = (state = [], action) => {
 
 const selectedCountryReducer = (state = null, action) => {
   switch (action.type) {
-    case 'SELECT_COUNTRY':
+    case "SELECT_COUNTRY":
       return action.payload;
 
-    case 'FETCH_COUNTRY':
+    case "FETCH_COUNTRY":
       return action.payload[0];
     default:
       return state;
   }
 };
 
-const selectedRegionReducer = (state = 'All', action) => {
-  if (action.type === 'SWITCH_REGION') {
+const selectedRegionReducer = (state = "All", action) => {
+  if (action.type === "SWITCH_REGION") {
     return action.payload;
   }
   return state;
 };
 
-const selectedThemeReducer = (state = 'light', action) => {
-  if (action.type === 'CHANGE_THEME') {
+const selectedThemeReducer = (state = "light", action) => {
+  if (action.type === "CHANGE_THEME") {
     return action.payload;
   }
   return state;

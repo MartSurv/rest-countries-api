@@ -1,22 +1,21 @@
-import './CountryList.css';
-import React from 'react';
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import CountryCard from './CountryCard';
+import CountryCard from "./CountryCard";
+import "./CountryList.css";
 
 function CountryList({ data, selectedRegion }) {
   const filteredData = () => {
-    if (selectedRegion === 'All') {
+    if (selectedRegion === "All") {
       return data;
-    } else if (selectedRegion === 'Africa') {
+    } else if (selectedRegion === "Africa") {
       return data.filter((country) => country.region === selectedRegion);
-    } else if (selectedRegion === 'Americas') {
+    } else if (selectedRegion === "Americas") {
       return data.filter((country) => country.region === selectedRegion);
-    } else if (selectedRegion === 'Asia') {
+    } else if (selectedRegion === "Asia") {
       return data.filter((country) => country.region === selectedRegion);
-    } else if (selectedRegion === 'Europe') {
+    } else if (selectedRegion === "Europe") {
       return data.filter((country) => country.region === selectedRegion);
-    } else if (selectedRegion === 'Oceania') {
+    } else if (selectedRegion === "Oceania") {
       return data.filter((country) => country.region === selectedRegion);
     }
   };
@@ -27,7 +26,7 @@ function CountryList({ data, selectedRegion }) {
 
   const changeAlignment = () => {
     if (filteredData().length < 4) {
-      return { justifyContent: 'center' };
+      return { justifyContent: "center" };
     } else {
       return;
     }

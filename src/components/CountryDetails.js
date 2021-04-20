@@ -1,24 +1,25 @@
-import './CountryDetails.css';
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchCountry } from '../actions';
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { fetchCountry } from "../actions";
+
+import "./CountryDetails.css";
 
 function CountryDetails({ country, allCountries, match, fetchCountry }) {
   useEffect(() => {
     fetchCountry(match.params.country);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [match.params.country]);
+  }, [match.params.country, fetchCountry]);
 
   const renderLanguages = () => {
     return country.languages.map((language) => {
-      return <span>{`${language.name} `}</span>;
+      return <span key={language.name}>{`${language.name} `}</span>;
     });
   };
 
   const renderCurrencies = () => {
     return country.currencies.map((currency) => {
-      return <span>{`${currency.name} `}</span>;
+      return <span key={currency.name}>{`${currency.name} `}</span>;
     });
   };
 
@@ -88,7 +89,7 @@ function CountryDetails({ country, allCountries, match, fetchCountry }) {
               <h2>Border Countries:</h2>
               {renderBorderCountries().map((borderCountry) => {
                 return (
-                  <Link to={`/${borderCountry}`}>
+                  <Link to={`/${borderCountry}`} key={borderCountry}>
                     <div className="country__border">{borderCountry}</div>
                   </Link>
                 );
